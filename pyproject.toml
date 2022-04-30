@@ -5,6 +5,6 @@ line-length = 119
 profile = "black"
 lines_after_imports = 2
 default_section = "THIRDPARTY"
-known_first_party = "PaliDict"
+known_first_party = "Nirutti"
 known_django = "django"
 sections = ["FUTURE","STDLIB","DJANGO","THIRDPARTY","FIRSTPARTY","LOCALFOLDER"]

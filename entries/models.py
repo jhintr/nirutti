@@ -3,7 +3,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
 
-WORD_LENGTH = 20
+WORD_LENGTH = 50
 
 ROMANIZE = {
     "ā": "a",
@@ -26,14 +26,14 @@ class Entry(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
 
     pali = models.CharField(max_length=WORD_LENGTH)
-    roman = models.CharField(max_length=WORD_LENGTH, null=True, blank=True)
     sanskrit = models.CharField(max_length=WORD_LENGTH, null=True, blank=True)
-    grammar = models.CharField(max_length=WORD_LENGTH, null=True, blank=True)
+    roman = models.CharField(max_length=WORD_LENGTH)
     content = models.TextField(blank=True)
 
     class Meta:
         ordering = ["pali"]
         verbose_name_plural = "Entries"
+        constraints = [models.UniqueConstraint(name="unique_sanskrit", fields=["pali", "sanskrit"])]
 
     def __str__(self) -> str:
         return self.pali
